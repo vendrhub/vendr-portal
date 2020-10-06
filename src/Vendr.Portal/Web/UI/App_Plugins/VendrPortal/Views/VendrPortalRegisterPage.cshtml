@@ -1,0 +1,69 @@
+﻿@using Vendr.Portal.Web;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "VendrPortalCentralMaster.cshtml";
+
+    var loginPage = Model.GetPortalLoginPage();
+
+    var errorMsg = TempData["VendrPortalErrorMessage"]?.ToString();
+    var hasError = !string.IsNullOrWhiteSpace(errorMsg);
+}
+
+<div class="max-w-md w-full py-12 px-6">
+
+    @if (TempData["VendrPortalStatus"] != "EmailSent")
+    {
+        <h2 class="mt-10 text-3xl font-semibold text-center leading-9 font-display">Register</h2>
+        <p class="mt-6 text-sm leading-5 text-center text-gray-900">Enter the email address and password you'd like to use to access your account.</p>
+        using (Html.BeginUmbracoForm("Register", "VendrPortalAuthSurface", null, new { @class = "mt-5" }, FormMethod.Post))
+        {
+            <div class="rounded-md shadow-sm">
+                <div>
+                    <input aria-label="Email address" name="email" type="email"
+                           required="" class="@(hasError ? "border-red-600" : "border-gray-300") placeholder-gray-500 appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+                           placeholder="Email address" value="@(Request.Form["email"])">
+                </div>
+                <div class="-mt-px relative">
+                    <input aria-label="Password" name="password" type="password" required=""
+                           class="@(hasError ? "border-red-600" : "border-gray-300") placeholder-gray-500 appearance-none rounded-none relative block w-full px-3 py-2 border text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Password">
+                </div>
+            </div>
+
+            if (hasError)
+            {
+                <p class="mt-2 text-sm leading-5 text-red-600">@(errorMsg)</p>
+            }
+
+            <div class="mt-5">
+                <button type="submit" class="relative group block w-full py-2 px-3 border border-transparent rounded-md text-white font-semibold bg-indigo-600 hover:bg-indigo-500 focus:bg-indigo-900 focus:outline-none focus:shadow-outline sm:text-sm sm:leading-5">
+                    Register
+                </button>
+            </div>
+        }
+
+        if (loginPage != null)
+        {
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm leading-5">
+                        <span class="px-2 bg-gray-100 text-gray-500">Already have an account?</span>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <a href="@(loginPage.Url)" class="block w-full text-center py-2 px-3 border border-gray-300 rounded-md text-gray-900 font-medium hover:border-gray-400 focus:outline-none focus:border-gray-400 sm:text-sm sm:leading-5">
+                        Log in
+                    </a>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <h2 class="mt-10 text-3xl font-semibold text-center leading-9 font-display">Email confirmation link sent</h2>
+        <p class="mt-6 text-sm leading-5 text-center text-gray-900">You should receive an email any minute with a link to confirm your registration.</p>
+    }
+
+</div>

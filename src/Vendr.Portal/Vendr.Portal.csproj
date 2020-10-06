@@ -274,11 +274,18 @@
   <ItemGroup>
     <Compile Include="Helpers\KeyValueStoreHelper.cs" />
     <Compile Include="Helpers\TimeBasedCodeHelper.cs" />
+    <Compile Include="Pipeline\Implement\InstallPipeline.cs" />
+    <Compile Include="Pipeline\Implement\InstallPipelineContext.cs" />
+    <Compile Include="Pipeline\Implement\Tasks\CreateVendrPortalDataTypesTask.cs" />
+    <Compile Include="Pipeline\Implement\Tasks\CreateVendrPortalDocumentTypesTask.cs" />
+    <Compile Include="Pipeline\IPipelineTask.cs" />
+    <Compile Include="Pipeline\Pipeline.cs" />
+    <Compile Include="Pipeline\PipelineTaskExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VendrPortalConstants.cs" />
     <Compile Include="Web\Composing\VendrPortalComponent.cs" />
     <Compile Include="Web\Composing\VendrPortalComposer.cs" />
-    <Compile Include="Web\Controllers\VendrPortalMembershipSurfaceController.cs" />
+    <Compile Include="Web\Controllers\VendrPortalAuthSurfaceController.cs" />
     <Compile Include="Web\Dtos\VendrConfirmRegistrationDto.cs" />
     <Compile Include="Web\Dtos\VendrRegisterDto.cs" />
     <Compile Include="Web\Dtos\VendrPortalResetPasswordRequestDto.cs" />
@@ -287,8 +294,12 @@
     <Compile Include="Web\Models\RegistrationEmailModel.cs" />
     <Compile Include="Web\Models\ResetPasswordEmailModel.cs" />
     <Compile Include="Web\PublishedContentExtensions.cs" />
-    <Compile Include="Web\Routing\VendrPortalProtectedContentFinder.cs" />
-    <Compile Include="Web\Routing\VendrPortalProtectedUrlProvider.cs" />
+    <Content Include="Web\UI\App_Plugins\VendrPortal\Views\VendrPortalApplicationMaster.cshtml" />
+    <Content Include="Web\UI\App_Plugins\VendrPortal\Views\VendrPortalLoginPage.cshtml" />
+    <None Include="Web\UI\App_Plugins\VendrPortal\Views\VendrPortalAuthMaster.cshtml" />
+    <Content Include="Web\UI\App_Plugins\VendrPortal\Views\Web.config" />
+    <Content Include="Web\UI\App_Plugins\VendrPortal\Views\VendrPortalResetPasswordPage.cshtml" />
+    <Content Include="Web\UI\App_Plugins\VendrPortal\Views\VendrPortalRegisterPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -11,11 +11,11 @@ using Vendr.Portal.Web.Models;
 
 namespace Vendr.Portal.Web.Controllers
 {
-    public class VendrPortalMembershipSurfaceController : SurfaceController
+    public class VendrPortalAuthSurfaceController : SurfaceController
     {
         private readonly IVendrApi _vendrApi;
 
-        public VendrPortalMembershipSurfaceController(IVendrApi vendrApi)
+        public VendrPortalAuthSurfaceController(IVendrApi vendrApi)
         {
             _vendrApi = vendrApi;
         }
@@ -97,7 +97,7 @@ namespace Vendr.Portal.Web.Controllers
             var emailModel = new ResetPasswordEmailModel { 
                 Email = model.Email, 
                 Code = code, 
-                ResetPasswordUrl = Url.SurfaceAction<VendrPortalMembershipSurfaceController>("ResetPassword", new
+                ResetPasswordUrl = Url.SurfaceAction<VendrPortalAuthSurfaceController>("ResetPassword", new
                 {
                     email = model.Email,
                     code
@@ -206,7 +206,7 @@ namespace Vendr.Portal.Web.Controllers
             {
                 Email = model.Email,
                 Code = code,
-                ConfirmRegistrationUrl = Url.SurfaceAction<VendrPortalMembershipSurfaceController>("ConfirmRegistration", new
+                ConfirmRegistrationUrl = Url.SurfaceAction<VendrPortalAuthSurfaceController>("ConfirmRegistration", new
                 {
                     email = model.Email,
                     code = code
